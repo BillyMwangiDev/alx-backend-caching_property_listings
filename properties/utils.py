@@ -34,6 +34,11 @@ def getallproperties() -> List[Property]:
     return properties
 
 
+def getall_properties() -> List[Property]:
+    """Alias for getallproperties() to match view requirements."""
+    return getallproperties()
+
+
 def getrediscachemetrics() -> Dict[str, Any]:
     """
     Retrieve and analyze Redis cache hit/miss metrics.
