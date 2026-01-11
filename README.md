@@ -2,6 +2,26 @@
 
 A Django application demonstrating Redis caching strategies for property listings, including view-level caching, low-level caching, cache invalidation, and cache metrics analysis.
 
+## Real-World Context
+
+This project models a real estate listing platform where:
+
+1. **Property listings are frequently accessed but rarely modified** - The read-heavy nature makes caching ideal
+2. **Database load needs to be minimized during peak traffic** - Caching reduces database queries significantly
+3. **Data consistency must be maintained despite caching** - Signal-based invalidation ensures fresh data
+4. **Performance metrics are monitored to optimize cache effectiveness** - Redis metrics provide visibility into cache performance
+
+Such caching implementations are crucial for:
+
+- **High-traffic listing platforms** (real estate, e-commerce)
+- **Applications with expensive database queries** - Reduces query execution time
+- **Systems requiring sub-second response times** - Redis provides sub-millisecond cache access
+- **Platforms needing to scale efficiently under load** - Horizontal scaling without proportional database scaling
+
+The techniques demonstrated provide a blueprint for building performant web applications while maintaining data consistency and reducing infrastructure costs.
+
+For detailed implementation analysis, see [Caching Implementation Guide](docs/CACHING_IMPLEMENTATION.md).
+
 ## Features
 
 - **Dockerized PostgreSQL and Redis**: Easy setup with Docker Compose
