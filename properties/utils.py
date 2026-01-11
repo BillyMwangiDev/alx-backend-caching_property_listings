@@ -1,6 +1,7 @@
 """
 Utility functions for properties app.
 """
+
 import logging
 from typing import List, Dict, Any
 from django.core.cache import cache
@@ -20,7 +21,7 @@ def getallproperties() -> List[Property]:
     Returns:
         List[Property]: QuerySet of all properties
     """
-    cache_key = 'allproperties'
+    cache_key = "allproperties"
     cached_properties = cache.get(cache_key)
 
     if cached_properties is not None:
@@ -55,10 +56,10 @@ def getrediscachemetrics() -> Dict[str, Any]:
     """
     try:
         redis_conn = get_redis_connection("default")
-        info = redis_conn.info('stats')
+        info = redis_conn.info("stats")
 
-        hits = info.get('keyspace_hits', 0)
-        misses = info.get('keyspace_misses', 0)
+        hits = info.get("keyspace_hits", 0)
+        misses = info.get("keyspace_misses", 0)
         total_requests = hits + misses
 
         hit_ratio = 0.0
@@ -66,10 +67,10 @@ def getrediscachemetrics() -> Dict[str, Any]:
             hit_ratio = hits / total_requests
 
         metrics = {
-            'hits': hits,
-            'misses': misses,
-            'hit_ratio': round(hit_ratio, 4),
-            'total_requests': total_requests,
+            "hits": hits,
+            "misses": misses,
+            "hit_ratio": round(hit_ratio, 4),
+            "total_requests": total_requests,
         }
 
         logger.info(
@@ -82,9 +83,9 @@ def getrediscachemetrics() -> Dict[str, Any]:
     except Exception as e:
         logger.error(f"Error retrieving Redis cache metrics: {str(e)}", exc_info=True)
         return {
-            'hits': 0,
-            'misses': 0,
-            'hit_ratio': 0.0,
-            'total_requests': 0,
-            'error': str(e),
+            "hits": 0,
+            "misses": 0,
+            "hit_ratio": 0.0,
+            "total_requests": 0,
+            "error": str(e),
         }

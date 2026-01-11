@@ -1,6 +1,7 @@
 """
 Property model for the property listings application.
 """
+
 from django.db import models
 
 
@@ -15,8 +16,9 @@ class Property(models.Model):
 
     class Meta:
         """Meta options for Property model."""
-        verbose_name_plural = 'Properties'
-        ordering = ['-created_at']
+
+        verbose_name_plural = "Properties"
+        ordering = ["-created_at"]
 
     def __str__(self) -> str:
         """Return string representation of Property."""

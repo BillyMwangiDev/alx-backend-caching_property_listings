@@ -1,6 +1,7 @@
 """
 Views for properties app.
 """
+
 import logging
 from django.views.decorators.cache import cache_page
 from django.http import JsonResponse
@@ -29,20 +30,19 @@ def property_list(request):
         properties = getall_properties()
         properties_data = [
             {
-                'id': prop.id,
-                'title': prop.title,
-                'description': prop.description,
-                'price': str(prop.price),
-                'location': prop.location,
-                'created_at': prop.created_at.isoformat(),
+                "id": prop.id,
+                "title": prop.title,
+                "description": prop.description,
+                "price": str(prop.price),
+                "location": prop.location,
+                "created_at": prop.created_at.isoformat(),
             }
             for prop in properties
         ]
         logger.info(f"Returned {len(properties_data)} properties")
-        return JsonResponse({'properties': properties_data}, safe=False)
+        return JsonResponse({"properties": properties_data}, safe=False)
     except Exception as e:
         logger.error(f"Error fetching properties: {str(e)}", exc_info=True)
         return JsonResponse(
-            {'error': 'Failed to fetch properties', 'message': str(e)},
-            status=500
+            {"error": "Failed to fetch properties", "message": str(e)}, status=500
         )

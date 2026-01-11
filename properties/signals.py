@@ -1,6 +1,7 @@
 """
 Signal handlers for properties app.
 """
+
 import logging
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
@@ -20,9 +21,11 @@ def invalidate_cache_on_save(sender, instance, **kwargs):
         instance: The instance being saved
         **kwargs: Additional keyword arguments
     """
-    cache_key = 'allproperties'
+    cache_key = "allproperties"
     cache.delete(cache_key)
-    logger.info(f"Cache invalidated for {cache_key} after save of Property {instance.id}")
+    logger.info(
+        f"Cache invalidated for {cache_key} after save of Property {instance.id}"
+    )
 
 
 @receiver(post_delete, sender=Property)
@@ -35,6 +38,8 @@ def invalidate_cache_on_delete(sender, instance, **kwargs):
         instance: The instance being deleted
         **kwargs: Additional keyword arguments
     """
-    cache_key = 'allproperties'
+    cache_key = "allproperties"
     cache.delete(cache_key)
-    logger.info(f"Cache invalidated for {cache_key} after delete of Property {instance.id}")
+    logger.info(
+        f"Cache invalidated for {cache_key} after delete of Property {instance.id}"
+    )
