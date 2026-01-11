@@ -35,7 +35,7 @@ def getallproperties() -> List[Property]:
     return properties
 
 
-def get_all_properties() -> List[Property]:
+def getall_properties() -> List[Property]:
     """Alias for getallproperties() to match view requirements."""
     return getallproperties()
 
