@@ -34,7 +34,7 @@ def getallproperties() -> List[Property]:
     return properties
 
 
-def get_redis_cache_metrics() -> Dict[str, Any]:
+def getrediscachemetrics() -> Dict[str, Any]:
     """
     Retrieve and analyze Redis cache hit/miss metrics.
 

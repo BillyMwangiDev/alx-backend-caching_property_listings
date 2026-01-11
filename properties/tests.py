@@ -7,7 +7,7 @@ from django.core.cache import cache
 from django.utils import timezone
 from decimal import Decimal
 from .models import Property
-from .utils import getallproperties, get_redis_cache_metrics
+from .utils import getallproperties, getrediscachemetrics
 
 
 class PropertyModelTest(TestCase):
@@ -140,8 +140,8 @@ class CacheMetricsTest(TestCase):
         cache.clear()
 
     def test_get_redis_cache_metrics_returns_dict(self):
-        """Test that get_redis_cache_metrics returns a dictionary."""
-        metrics = get_redis_cache_metrics()
+        """Test that getrediscachemetrics returns a dictionary."""
+        metrics = getrediscachemetrics()
         self.assertIsInstance(metrics, dict)
         self.assertIn('hits', metrics)
         self.assertIn('misses', metrics)
@@ -150,7 +150,7 @@ class CacheMetricsTest(TestCase):
 
     def test_cache_metrics_structure(self):
         """Test that cache metrics have correct structure."""
-        metrics = get_redis_cache_metrics()
+        metrics = getrediscachemetrics()
         self.assertIsInstance(metrics['hits'], int)
         self.assertIsInstance(metrics['misses'], int)
         self.assertIsInstance(metrics['hit_ratio'], float)
