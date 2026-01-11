@@ -4,7 +4,6 @@ Tests for properties app.
 import pytest
 from django.test import TestCase, Client
 from django.core.cache import cache
-from django.utils import timezone
 from decimal import Decimal
 from .models import Property
 from .utils import getallproperties, getrediscachemetrics

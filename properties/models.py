@@ -2,7 +2,6 @@
 Property model for the property listings application.
 """
 from django.db import models
-from django.utils import timezone
 
 
 class Property(models.Model):
