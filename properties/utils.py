@@ -20,14 +20,14 @@ def getallproperties() -> List[Property]:
     Returns:
         List[Property]: QuerySet of all properties
     """
-    cache_key = 'all_properties'
+    cache_key = 'allproperties'
     cached_properties = cache.get(cache_key)
 
     if cached_properties is not None:
-        logger.debug("Cache hit for all_properties")
+        logger.debug("Cache hit for allproperties")
         return cached_properties
 
-    logger.debug("Cache miss for all_properties, fetching from database")
+    logger.debug("Cache miss for allproperties, fetching from database")
     properties = list(Property.objects.all())
     cache.set(cache_key, properties, 3600)  # Cache for 1 hour
     logger.info(f"Cached {len(properties)} properties for 1 hour")

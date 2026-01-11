@@ -20,7 +20,7 @@ def invalidate_cache_on_save(sender, instance, **kwargs):
         instance: The instance being saved
         **kwargs: Additional keyword arguments
     """
-    cache_key = 'all_properties'
+    cache_key = 'allproperties'
     cache.delete(cache_key)
     logger.info(f"Cache invalidated for {cache_key} after save of Property {instance.id}")
 
@@ -35,6 +35,6 @@ def invalidate_cache_on_delete(sender, instance, **kwargs):
         instance: The instance being deleted
         **kwargs: Additional keyword arguments
     """
-    cache_key = 'all_properties'
+    cache_key = 'allproperties'
     cache.delete(cache_key)
     logger.info(f"Cache invalidated for {cache_key} after delete of Property {instance.id}")

@@ -105,7 +105,7 @@ class PropertyCacheTest(TestCase):
         """Test that cache is invalidated when a property is saved."""
         # Populate cache
         getallproperties()
-        self.assertIsNotNone(cache.get('all_properties'))
+        self.assertIsNotNone(cache.get('allproperties'))
 
         # Create a new property (should trigger signal)
         Property.objects.create(
@@ -116,20 +116,20 @@ class PropertyCacheTest(TestCase):
         )
 
         # Cache should be invalidated
-        self.assertIsNone(cache.get('all_properties'))
+        self.assertIsNone(cache.get('allproperties'))
 
     def test_cache_invalidation_on_delete(self):
         """Test that cache is invalidated when a property is deleted."""
         property_obj = Property.objects.first()
         # Populate cache
         getallproperties()
-        self.assertIsNotNone(cache.get('all_properties'))
+        self.assertIsNotNone(cache.get('allproperties'))
 
         # Delete property (should trigger signal)
         property_obj.delete()
 
         # Cache should be invalidated
-        self.assertIsNone(cache.get('all_properties'))
+        self.assertIsNone(cache.get('allproperties'))
 
 
 class CacheMetricsTest(TestCase):
