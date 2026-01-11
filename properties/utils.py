@@ -10,7 +10,7 @@ from .models import Property
 logger = logging.getLogger(__name__)
 
 
-def get_all_properties() -> List[Property]:
+def getallproperties() -> List[Property]:
     """
     Get all properties with low-level caching.
 

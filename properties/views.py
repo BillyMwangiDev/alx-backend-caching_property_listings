@@ -5,7 +5,7 @@ import logging
 from django.views.decorators.cache import cache_page
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
-from .utils import get_all_properties
+from .utils import getallproperties
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +17,7 @@ def property_list(request):
     View to return all properties.
 
     This view is cached for 15 minutes using the @cache_page decorator.
-    It also uses low-level caching via get_all_properties() utility function.
+    It also uses low-level caching via getallproperties() utility function.
 
     Args:
         request: HTTP request object
@@ -26,7 +26,7 @@ def property_list(request):
         JsonResponse: JSON response containing list of properties
     """
     try:
-        properties = get_all_properties()
+        properties = getallproperties()
         properties_data = [
             {
                 'id': prop.id,

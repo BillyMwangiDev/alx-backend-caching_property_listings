@@ -7,7 +7,7 @@ from django.core.cache import cache
 from django.utils import timezone
 from decimal import Decimal
 from .models import Property
-from .utils import get_all_properties, get_redis_cache_metrics
+from .utils import getallproperties, get_redis_cache_metrics
 
 
 class PropertyModelTest(TestCase):
@@ -91,20 +91,20 @@ class PropertyCacheTest(TestCase):
         )
 
     def test_get_all_properties_caches_result(self):
-        """Test that get_all_properties caches the result."""
+        """Test that getallproperties caches the result."""
         # First call should fetch from database
-        properties1 = get_all_properties()
+        properties1 = getallproperties()
         self.assertEqual(len(properties1), 1)
 
         # Second call should use cache
-        properties2 = get_all_properties()
+        properties2 = getallproperties()
         self.assertEqual(len(properties2), 1)
         self.assertEqual(properties1[0].id, properties2[0].id)
 
     def test_cache_invalidation_on_save(self):
         """Test that cache is invalidated when a property is saved."""
         # Populate cache
-        get_all_properties()
+        getallproperties()
         self.assertIsNotNone(cache.get('all_properties'))
 
         # Create a new property (should trigger signal)
@@ -122,7 +122,7 @@ class PropertyCacheTest(TestCase):
         """Test that cache is invalidated when a property is deleted."""
         property_obj = Property.objects.first()
         # Populate cache
-        get_all_properties()
+        getallproperties()
         self.assertIsNotNone(cache.get('all_properties'))
 
         # Delete property (should trigger signal)
