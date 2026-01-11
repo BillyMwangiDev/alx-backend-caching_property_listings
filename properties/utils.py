@@ -35,7 +35,7 @@ def getallproperties() -> List[Property]:
     return properties
 
 
-def get_all_properties() -> List[Property]:
+def get_all_properties():
     """Alias for getallproperties() to match view requirements."""
     return getallproperties()
 
@@ -89,6 +89,6 @@ def getrediscachemetrics() -> Dict[str, Any]:
         }
 
 
-def get_redis_cache_metrics() -> Dict[str, Any]:
+def get_redis_cache_metrics():
     """Alias for getrediscachemetrics() to match checker requirements."""
     return getrediscachemetrics()
